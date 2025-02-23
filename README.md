@@ -1,2 +1,1 @@
-# irving-ios
-iOS implementation of the Irving mobile architecture.
+# The Riveting Mobile Architecture
