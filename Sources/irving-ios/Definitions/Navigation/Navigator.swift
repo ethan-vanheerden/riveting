@@ -15,44 +15,48 @@ public protocol Navigator: AnyObject {
     
     /// Pushes a given `UIViewController` onto the navigation stack.
     /// - Parameters:
-    ///   - vc: The `UIViewController` to push
-    ///   - animated: Whether or not to animate the UI change
+    ///   - vc: The `UIViewController` to push.
+    ///   - animated: Whether or not to animate the UI change.
     func push(_ vc: UIViewController, animated: Bool)
     
     /// Pushes a given SwiftUI `View` onto the navigation stack.
     /// - Parameters:
-    ///   - view: The `View` to push
-    ///   - animated: Whether or not to animate the UI change
+    ///   - view: The `View` to push.
+    ///   - animated: Whether or not to animate the UI change.
     func push<Content: View>(_ view: Content, animated: Bool)
     
     /// Presents a given `UIViewController` in front of the current screen.
     /// - Parameters:
-    ///   - vc: The `UIViewController` to present
-    ///   - animated: Whether or not to animate the UI change
+    ///   - vc: The `UIViewController` to present.
+    ///   - animated: Whether or not to animate the UI change.
     func present(_ vc: UIViewController, animated: Bool)
     
     /// Presents a given SwiftUI `View` in front of the current screen.
     /// - Parameters:
-    ///   - view: The `View` to present
-    ///   - animated: Whether or not to animate the UI change
+    ///   - view: The `View` to present.
+    ///   - animated: Whether or not to animate the UI change.
     func present<Content: View>(_ view: Content, animated: Bool)
     
-    /// Dismisses the current view which is being shown
-    /// - Parameter animated: Whether or not to animate the UI change
+    /// Dismisses the current view which is being shown.
+    /// - Parameter animated: Whether or not to animate the UI change.
     func dismiss(animated: Bool)
     
     /// Dismisses all of the views that this Navigator handles.
-    /// - Parameter animated: Whether or not to animate the UI change
+    /// - Parameter animated: Whether or not to animate the UI change.
     func dismissSelf(animated: Bool)
     
+    /// Dismisses the current view which is being shown with the given completion handler.
+    /// - Parameters:
+    ///   - animated: Whether or not to animate the UI change.
+    ///   - completion: Completion handler to be called after the dismissal.
     func dismissWithCompletion(animated: Bool, completion: @escaping () -> Void)
     
-    /// Pops the top view controller on the current navigation stack.
-    /// - Parameter animated: Whether or not to animate the UI change
+    /// Pops the top View on the current navigation stack.
+    /// - Parameter animated: Whether or not to animate the UI change.
     func pop(animated: Bool)
 }
 
-/// Default methods for base UINavigationControllers
+/// Default methods for  UINavigationControllers
 public extension Navigator where Self: UINavigationController {
     func push(_ vc: UIViewController, animated: Bool) {
         self.pushViewController(vc, animated: animated)
