@@ -46,7 +46,7 @@ extension Feature where Interactor.Domain == Reducer.Domain,
         let reducer = self.reducer
         // These can run off the main thread
         let domain = await Task.detached(priority: .userInitiated) {
-            interactor.interact(with: action)
+            await interactor.interact(with: action)
         }.value
         let viewState = await Task.detached(priority: .userInitiated) {
             reducer.reduce(from: domain)
