@@ -1,6 +1,6 @@
 //
 //  NavigationRouter.swift
-//  irving-ios
+//  Riveting
 //
 //  Created by Ethan Van Heerden on 10/28/24.
 //
@@ -9,9 +9,10 @@
 public protocol NavigationRouter {
     associatedtype Event
     
-    var navigator: Navigator? { get set}
+    /// The Navigator that the actual navigation events are delegated to.
+    var navigator: Navigator? { get set }
     
     /// Performs a custom action when a navigation event is received.
-    /// - Parameter event: The navigation event which should trigger some navigation
+    /// - Parameter event: The navigation event which should trigger some navigation.
     func navigate(_ event: Event)
 }

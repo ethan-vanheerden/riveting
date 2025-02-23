@@ -1,6 +1,6 @@
 //
 //  Navigator.swift
-//  irving-ios
+//  Riveting
 //
 //  Created by Ethan Van Heerden on 10/28/24.
 //
@@ -56,15 +56,25 @@ public protocol Navigator: AnyObject {
     func pop(animated: Bool)
 }
 
-/// Default methods for  UINavigationControllers
+/// Default methods for  UINavigationControllers.
 public extension Navigator where Self: UINavigationController {
     func push(_ vc: UIViewController, animated: Bool) {
         self.pushViewController(vc, animated: animated)
     }
     
+    func push<Content: View>(_ view: Content, animated: Bool) {
+        let viewController = UIHostingController(rootView: view)
+        self.push(viewController, animated: animated)
+    }
+    
     func present(_ vc: UIViewController, animated: Bool) {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: animated)
+    }
+    
+    func present<Content: View>(_ view: Content, animated: Bool) {
+        let viewController = UIHostingController(rootView: view)
+        self.present(viewController, animated: animated)
     }
     
     func dismiss(animated: Bool) {

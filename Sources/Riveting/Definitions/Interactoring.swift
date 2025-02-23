@@ -1,11 +1,11 @@
 //
 //  Interactor.swift
-//  irving-iostest
+//  Riveting
 //
 //  Created by Ethan Van Heerden on 2/22/25.
 //
 
-/// An Interactor defines behavior to react to a specific View action and updates the underlying Domain
+/// An Interactoring type defines behavior to react to a specific View action and updates the underlying Domain
 /// state of the feature. Generally, this is what updates our in-memory representation of our model.
 protocol Interacting: Sendable {
     associatedtype Action: Sendable

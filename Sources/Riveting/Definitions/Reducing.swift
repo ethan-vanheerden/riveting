@@ -1,11 +1,11 @@
 //
 //  Reducer.swift
-//  irving-ios
+//  Riveting
 //
 //  Created by Ethan Van Heerden on 2/22/25.
 //
 
-/// A Reducer is a mapper of a Domain state to a View State used for View updates.
+/// A Reducing type is a mapper of a Domain state to a View State used for View updates.
 /// It is useful to put our Domain (model) representation into a more convenient type to create
 /// Views from,
 protocol Reducing: Sendable {

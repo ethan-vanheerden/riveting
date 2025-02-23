@@ -1,6 +1,6 @@
 //
 //  Feature.swift
-//  irving-ios
+//  Riveting
 //
 //  Created by Ethan Van Heerden on 2/22/25.
 //
