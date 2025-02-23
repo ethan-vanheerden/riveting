@@ -11,7 +11,7 @@ import SwiftUI
 /// Represents a feature which reacts to user events and updates a View State.
 /// This type acts as the glue for a feature by connecting an Interactor and a Reducer,
 /// as well as publishing an updated View State.
-protocol Feature: ObservableObject {
+public protocol Feature: ObservableObject {
     associatedtype ViewState
     associatedtype Interactor: Interacting
     associatedtype Reducer: Reducing
