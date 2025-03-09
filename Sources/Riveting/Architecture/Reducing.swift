@@ -12,7 +12,8 @@ public protocol Reducing: Sendable {
     associatedtype Domain: Sendable
     associatedtype ViewState: Sendable
     
-    /// Maps a Domain state to a View State.
+    /// Maps a Domain state to a View State. This is mainly used to abstract a model implementaiton
+    /// into a type that *only* contains what the View needs to render.
     /// - Parameter domain: The Domain to map to a View State.
     /// - Returns: The View State that is created from the given Domain.
     func reduce(from domain: Domain) -> ViewState

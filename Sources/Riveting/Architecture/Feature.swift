@@ -36,7 +36,8 @@ public protocol Feature: ObservableObject {
 /// features. The associated types in the Feature, Interactor, and Reducer should appropriately
 /// align, which allows a simple implementation of the `send(action:)` function.
 ///
-/// If your Feature can't utilize this extension, you should double check your associated types.
+/// If your Feature can't utilize this extension, you should double check your associated types
+/// across the Interactor and Reducer.
 extension Feature where Interactor.Domain == Reducer.Domain,
                         Reducer.ViewState == ViewState {
     

@@ -11,7 +11,8 @@ public protocol Interacting: Sendable {
     associatedtype Action: Sendable
     associatedtype Domain: Sendable
     
-    /// Receives a View action and produces the updated Domain state.
+    /// Receives a View action and produces the updated Domain state. This function
+    /// is a`async` as the Interactor is the layer that API calls are typically made.
     /// - Parameter action: The action fired from the View.
     /// - Returns: The updated Domain state triggered by the View action.
     func interact(with action: Action) async -> Domain
