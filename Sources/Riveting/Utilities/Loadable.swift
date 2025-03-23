@@ -6,14 +6,7 @@
 //
 
 /// Represents a type that can have a loadable state until it obtains a real value.
-public protocol Loadable<Value> {
-    associatedtype Value
-    
-    var value: LoadableValue<Value> { get set }
-}
-
-/// A value that needs to be loaded.
-public enum LoadableValue<Value> {
+public enum Loadable<Value> {
     case loading
     case loaded(Value)
 }
