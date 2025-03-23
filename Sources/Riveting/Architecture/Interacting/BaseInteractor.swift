@@ -14,7 +14,7 @@
 /// - Providing a mechanism for safely updating the domain.
 ///
 /// Subclasses should override the `interact(with:)` method to implement specific business logic for received `Action`s.
-public class BaseInteractor<Action, Domain>: Interacting {
+open class BaseInteractor<Action, Domain>: Interacting {
     public typealias Stream = AsyncStream<Domain>
     
     public var domain: Domain

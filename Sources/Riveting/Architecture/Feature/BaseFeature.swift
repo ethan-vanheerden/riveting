@@ -15,7 +15,7 @@ import SwiftUI
 /// - Automatically updating view state when domain changes occur.
 /// - Threading concerns by ensuring view updates happen on the main thread.
 /// - Proper cleanup of async tasks.
-public class BaseFeature<Interactor, Reducer>: Feature where Interactor: Interacting,
+open class BaseFeature<Interactor, Reducer>: Feature where Interactor: Interacting,
                                                                 Reducer: Reducing,
                                                                 Interactor.Domain == Reducer.Domain {
     public typealias ViewState = Reducer.ViewState
