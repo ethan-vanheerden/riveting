@@ -58,6 +58,19 @@ open class BaseInteractor<Action, Domain>: Interacting {
         continuation.yield(newDomain)
     }
     
+    
+    @discardableResult
+    // Returns the task in case the caller wants to store it and cancel it
+    public func updateDomain(_ update: @escaping (inout Domain) async -> Void) -> Task<Void, Never> {
+        return Task {
+            var newDomain = domain
+            await update(&newDomain)
+            domain = newDomain
+            
+            continuation.yield(newDomain)
+        }
+    }
+    
     /// This is a placeholder implementation that must be overridden by subclasses.
     open func interact(with action: Action) {
         fatalError("Subclasses must implement interact(with:)")
