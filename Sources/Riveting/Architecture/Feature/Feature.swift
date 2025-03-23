@@ -37,5 +37,5 @@ public protocol Feature: ObservableObject {
     
     /// Send an event from the View to trigger a reaction which updates the View State.
     /// - Parameter action: The event fired from the View.
-    func send(action: Interactor.Action)
+    func send(_ action: Interactor.Action)
 }

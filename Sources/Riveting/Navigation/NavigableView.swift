@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A View that can either be navigated to and/or away from using a specified `NavigationRouter`.
-protocol NavigableView: View {
+public protocol NavigableView: View {
     associatedtype Router: NavigationRouter
     
     /// The `NavigationRouter` used to perform navigation.
@@ -19,7 +19,7 @@ protocol NavigableView: View {
     func navigate(_ event: Router.Event)
 }
 
-extension NavigableView {
+public extension NavigableView {
     func navigate(_ event: Router.Event) {
         navigationRouter.navigate(event)
     }

@@ -60,7 +60,7 @@ open class BaseFeature<Interactor, Reducer>: Feature where Interactor: Interacti
     /// domain changes through the interactor.
     ///
     /// - Parameter action: The action representing a view event.
-    public func send(action: Interactor.Action) {
+    public func send(_ action: Interactor.Action) {
         interactor.interact(with: action)
     }
     
