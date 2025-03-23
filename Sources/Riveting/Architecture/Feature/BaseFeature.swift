@@ -73,7 +73,7 @@ public class BaseFeature<Interactor, Reducer>: Feature where Interactor: Interac
     /// 4. Updates the view state on the main thread.
     ///
     /// This binding creates the reactive loop that enables the unidirectional data flow.
-    public func setupBindings() {
+    private func setupBindings() {
         task?.cancel()
         
         task = Task { [weak self] in
