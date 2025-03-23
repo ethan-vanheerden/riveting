@@ -1,5 +1,5 @@
 //
-//  Reducer.swift
+//  Reducing.swift
 //  Riveting
 //
 //  Created by Ethan Van Heerden on 2/22/25.
