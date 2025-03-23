@@ -59,7 +59,7 @@ open class BaseInteractor<Action, Domain>: Interacting {
     }
     
     /// This is a placeholder implementation that must be overridden by subclasses.
-    public func interact(with action: Action) {
+    open func interact(with action: Action) {
         fatalError("Subclasses must implement interact(with:)")
     }
 }
