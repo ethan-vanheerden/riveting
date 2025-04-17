@@ -92,3 +92,5 @@ public extension Navigator where Self: UINavigationController {
         self.popViewController(animated: animated)
     }
 }
+
+extension UINavigationController: Navigator { /* no-op */ }
