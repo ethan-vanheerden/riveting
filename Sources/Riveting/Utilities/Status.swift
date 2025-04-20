@@ -11,3 +11,5 @@ public enum Status<Value> {
     case loaded(Value)
     case error(String?)
 }
+
+extension Status: Equatable where Value: Equatable { /* no-op */ }
