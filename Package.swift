@@ -20,6 +20,11 @@ let package = Package(
             name: "Riveting",
             path: "Sources/Riveting"
         ),
+        .target(
+            name: "RivetingTestSupport",
+            dependencies: ["Riveting"],
+            path: "Sources/RivetingTestSupport"
+        ),
         .testTarget(
             name: "RivetingTests",
             dependencies: ["Riveting"],
