@@ -12,6 +12,10 @@ let package = Package(
             name: "Riveting",
             targets: ["Riveting"]
         ),
+        .library(
+            name: "RivetingTestSupport",
+            targets: ["RivetingTestSupport"]
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
