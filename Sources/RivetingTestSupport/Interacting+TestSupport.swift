@@ -8,13 +8,29 @@
 import Riveting
 import Foundation
 
+// MARK: - TestAction
+
+/// Represents an action an interactor can be sent during a testing environement. This is just the iteractor's
+/// defined actions along with a `wait` actions which specifies a waiting period before it can be fired another action.
+public enum TestAction<Interactor> where Interactor: Interacting {
+    case wait(TimeInterval)
+    case action(Interactor.Action)
+    
+    public init (_ action: Interactor.Action) {
+        self = .action(action)
+    }
+}
+
+// MARK: - Interacting+TestSupport
+
 public extension Interacting {
     
     /// Collects and returns the specified number of domains emitted by this Interator's stream of domains.
     /// **NOTE**: This function is greedy, it will return the first `count` of domains even if more domains would be emitted in the future.
     /// - Parameters:
     ///   - count: The number of domains to collect.
-    ///   - actions: The list of Actions to send to this interactor in the given order.
+    ///   - actions: The list of `TestAction`s to send to this interactor in the given order.
+    ///              This is either one of the interactor's defined actions, or a specified wait period before firing the next action.
     ///   - includeFirst: Whether or not to include the first emitted state in the returned domains array.
     ///                   This is in the event you want to avoid collecting a value that is published upon
     ///                   initialization, and just want to collect values emitted after sending `actions`.
@@ -23,7 +39,7 @@ public extension Interacting {
     /// - Returns: An array of the collected domains.
     func collect(
         _ count: Int,
-        performing actions: [Action],
+        performing actions: [TestAction<Self>],
         includeFirst: Bool = false,
         timeout: TimeInterval = 1
     ) async throws -> [Domain] {
@@ -53,8 +69,14 @@ public extension Interacting {
                 
                 // Child task to send the actual events
                 group.addTask {
-                    for action in actions {
-                        interact(with: action)
+                    for testAction in actions {
+                        switch testAction {
+                        case .wait(let seconds):
+                            try await Task.sleep(for: .seconds(seconds))
+                            continue
+                        case .action(let action):
+                            interact(with: action)
+                        }
                     }
                     return [] // Signify end of the child task
                 }
@@ -81,6 +103,8 @@ public extension Interacting {
     }
 }
 
+// MARK: - InteractingTestError
+
 enum InteractingTestError: Error {
     case unfulfilled(with: [Any], expectedCount: Int)
     
@@ -94,4 +118,3 @@ Interactor collected \(collectedDomains.count) domains, expected \(expectedCount
         }
     }
 }
-
