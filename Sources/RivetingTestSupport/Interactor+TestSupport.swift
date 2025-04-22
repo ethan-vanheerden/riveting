@@ -11,14 +11,20 @@ import Foundation
 public extension Interacting {
     
     /// Collects and returns the specified number of domains emitted by this Interator's stream of domains.
-    /// **NOTE**: This function is greedy, it will return the first `count` of domains event if more domains are emitted.
+    /// **NOTE**: This function is greedy, it will return the first `count` of domains even if more domains would be emitted in the future.
     /// - Parameters:
     ///   - count: The number of domains to collect.
+    ///   - actions: The list of Actions to send to this interactor in the given order.
+    ///   - includeFirst: Whether or not to include the first emitted state in the returned domains array.
+    ///                   This is in the event you want to avoid collecting a value that is published upon
+    ///                   initialization, and just want to collect values emitted after sending `actions`.
+    ///                   Default value is false.
     ///   - timeout: The timeout (in seconds) to collect the number of specified domains.
     /// - Returns: An array of the collected domains.
     func collect(
         _ count: Int,
         performing actions: [Action],
+        includeFirst: Bool = false,
         timeout: TimeInterval = 1
     ) async throws -> [Domain] {
         return try await withTimeout(seconds: timeout) {
@@ -27,6 +33,10 @@ public extension Interacting {
                 group.addTask {
                     var collectedDomains = [Domain]()
                     var iterator = domainStream.makeAsyncIterator()
+                    
+                    if !includeFirst {
+                        _ = await iterator.next()
+                    }
                     
                     while collectedDomains.count < count {
                         guard let nextDomain = await iterator.next() else {
