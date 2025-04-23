@@ -30,6 +30,10 @@ public extension Interacting {
         includeFirst: Bool = false,
         timeout: TimeInterval = 1
     ) async throws -> [Domain] {
+        guard count > 0 else {
+            throw InteractingTestError.invalidCount(count)
+        }
+        
         return try await withTimeout(seconds: timeout) {
             return try await withThrowingTaskGroup(of: [Domain].self) { group in
                 // Child task to listen for domain state updates
@@ -93,12 +97,15 @@ public extension Interacting {
 // MARK: - InteractingTestError
 
 enum InteractingTestError: Error {
+    case invalidCount(Int)
     case unfulfilled(with: [Any], expectedCount: Int)
     
     var description: String {
         switch self {
+        case .invalidCount(let count):
+            "Received in invalid count: \(count)"
         case let .unfulfilled(collectedDomains, expectedCount):
-            return """
+"""
 Interactor collected \(collectedDomains.count) domains, expected \(expectedCount):\n
 \t\(collectedDomains.map { "\($0)\n"})
 """

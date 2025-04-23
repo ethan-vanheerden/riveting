@@ -20,7 +20,6 @@ open class BaseInteractor<Action, Domain>: Interacting {
     public var domain: Domain
     public let domainStream: Stream
     private let continuation: Stream.Continuation
-    private var task: Task<Void, Never>?
     
     /// Initializes a new interactor with the specified initial domain state.
     ///
@@ -38,7 +37,6 @@ open class BaseInteractor<Action, Domain>: Interacting {
     
     deinit {
         continuation.finish()
-        task?.cancel()
     }
     
     /// Updates the domain state using the provided closure.
