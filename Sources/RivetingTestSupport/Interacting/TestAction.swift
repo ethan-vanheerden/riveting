@@ -19,8 +19,4 @@ public enum TestAction<Interactor> where Interactor: Interacting {
     public init(_ action: Interactor.Action) {
         self = .action(action)
     }
-    
-    static func build(@TestActionBuilder<Interactor> testActions: () -> [TestAction<Interactor>]) -> [TestAction<Interactor>] {
-        testActions()
-    }
 }
