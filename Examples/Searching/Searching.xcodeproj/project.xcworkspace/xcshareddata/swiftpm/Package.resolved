@@ -1,0 +1,15 @@
+{
+  "originHash" : "6c101375fdab1353ae96c36e2ad3fe61dffd23aec713081059be8160026449d2",
+  "pins" : [
+    {
+      "identity" : "riveting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ethan-vanheerden/Riveting",
+      "state" : {
+        "branch" : "initial-implementation",
+        "revision" : "916678b8b6aee7b0574b719c65d2b3dd273347ba"
+      }
+    }
+  ],
+  "version" : 3
+}
