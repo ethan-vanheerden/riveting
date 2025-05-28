@@ -7,7 +7,18 @@
 
 import SwiftUI
 
-/// A View that can either be navigated to and/or away from using a specified `NavigationRouter`.
+/// A View that can be navigated to and/or away from using a specified `NavigationRouter`.
+///
+/// NavigableView provides a standardized way to handle navigation within the RIV architecture.
+/// It encapsulates navigation logic and delegates the actual navigation implementation to a router.
+///
+/// By conforming to this protocol, views can:
+/// - Maintain a reference to a navigation router
+/// - Trigger navigation events through a consistent interface
+/// - Separate navigation logic from view rendering logic
+///
+/// This approach makes navigation more testable and allows for different navigation implementations
+/// without changing the view code.
 public protocol NavigableView: View {
     associatedtype Router: NavigationRouter
     

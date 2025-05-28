@@ -6,7 +6,16 @@
 //
 
 /// An `Interacting` type defines behavior to react to a specific View action to update the underlying domain
-/// state of the feature. Generally, this is what updates our in-memory representation of our model.
+/// state of the feature.
+///
+/// Interactors are responsible for:
+/// - Processing actions from the view
+/// - Updating the domain state based on those actions
+/// - Broadcasting domain state changes to subscribers
+/// - Encapsulating business logic and side effects
+///
+/// The interactor is a key component in the unidirectional data flow architecture, serving as the bridge
+/// between user interactions and domain state changes.
 public protocol Interacting {
     /// The type of action that can be sent to the interactor.
     associatedtype Action
