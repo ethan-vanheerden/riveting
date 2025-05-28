@@ -5,18 +5,32 @@
 //  Created by Ethan Van Heerden on 10/28/24.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
 import SwiftUI
 
-/// A delegate to a `NavigationRouter`. This should handle the actual navigation UI changes.
+/// Handles the actual UI navigation operations delegated by a NavigationRouter.
+///
+/// The Navigator is responsible for:
+/// - Executing UI-specific navigation operations like pushing, presenting, or dismissing views
+/// - Providing a consistent interface for both UIKit and SwiftUI navigation
+/// - Isolating navigation implementation details from business logic
+///
+/// By separating the navigation implementation (Navigator) from the navigation logic (NavigationRouter),
+/// the RIV architecture achieves better testability and flexibility in how navigation is performed.
+///
+/// This protocol is marked with @MainActor to ensure all UI operations happen on the main thread.
 @MainActor
 public protocol Navigator: AnyObject {
     
+    #if canImport(UIKit)
     /// Pushes a given `UIViewController` onto the navigation stack.
     /// - Parameters:
     ///   - vc: The `UIViewController` to push.
     ///   - animated: Whether or not to animate the UI change.
     func push(_ vc: UIViewController, animated: Bool)
+    #endif
     
     /// Pushes a given SwiftUI `View` onto the navigation stack.
     /// - Parameters:
@@ -24,11 +38,13 @@ public protocol Navigator: AnyObject {
     ///   - animated: Whether or not to animate the UI change.
     func push<Content: View>(_ view: Content, animated: Bool)
     
+    #if canImport(UIKit)
     /// Presents a given `UIViewController` in front of the current screen.
     /// - Parameters:
     ///   - vc: The `UIViewController` to present.
     ///   - animated: Whether or not to animate the UI change.
     func present(_ vc: UIViewController, animated: Bool)
+    #endif
     
     /// Presents a given SwiftUI `View` in front of the current screen.
     /// - Parameters:
@@ -55,7 +71,8 @@ public protocol Navigator: AnyObject {
     func pop(animated: Bool)
 }
 
-/// Default methods for  UINavigationControllers.
+#if canImport(UIKit)
+/// Default methods for UINavigationControllers.
 public extension Navigator where Self: UINavigationController {
     func push(_ vc: UIViewController, animated: Bool) {
         self.pushViewController(vc, animated: animated)
@@ -94,3 +111,4 @@ public extension Navigator where Self: UINavigationController {
 }
 
 extension UINavigationController: Navigator { /* no-op */ }
+#endif

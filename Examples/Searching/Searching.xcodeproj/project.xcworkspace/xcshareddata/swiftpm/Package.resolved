@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ethan-vanheerden/Riveting",
       "state" : {
-        "branch" : "initial-implementation",
-        "revision" : "916678b8b6aee7b0574b719c65d2b3dd273347ba"
+        "revision" : "1d376257dc5aef2c62da06af03bd40d9fe6bc93d",
+        "version" : "0.1.0"
       }
     }
   ],

@@ -5,9 +5,16 @@
 //  Created by Ethan Van Heerden on 2/22/25.
 //
 
-/// A `Reducing` type is a mapper of a Domain state to a View State used for View updates.
-/// It is used to abstract our Domain (model) representation into a more convenient type to create
-/// Views from.
+/// A `Reducing` type transforms domain state into view state for rendering in the UI.
+///
+/// Reducers are responsible for:
+/// - Converting domain models into view-specific data structures
+/// - Filtering domain data to include only what the view needs
+/// - Formatting data for presentation (e.g., date formatting, localization)
+/// - Ensuring the view has exactly what it needs to render correctly
+///
+/// By separating the domain model from the view state, reducers help maintain a clean separation
+/// of concerns and make the codebase more maintainable and testable.
 public protocol Reducing {
     associatedtype Domain
     associatedtype ViewState

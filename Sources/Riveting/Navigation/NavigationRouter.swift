@@ -5,7 +5,19 @@
 //  Created by Ethan Van Heerden on 10/28/24.
 //
 
-/// Triggers custom actions based on navigation events which we send.
+/// Handles navigation logic by responding to navigation events and delegating UI changes to a Navigator.
+///
+/// The NavigationRouter is responsible for:
+/// - Defining the navigation events that can occur in a feature
+/// - Implementing the business logic for each navigation event
+/// - Delegating the actual UI navigation operations to a Navigator
+///
+/// This separation allows for:
+/// - Cleaner view code that doesn't need to know navigation implementation details
+/// - More testable navigation logic
+/// - The ability to reuse navigation patterns across different features
+///
+/// NavigationRouters typically work with NavigableViews to provide a complete navigation solution.
 public protocol NavigationRouter {
     associatedtype Event
     
