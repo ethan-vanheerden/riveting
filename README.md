@@ -55,7 +55,7 @@ Then add the dependency to your target:
 )
 ```
 
-For testing support, add the RivetingTestSupport package:
+For testing support, add the RivetingTestSupport package _only_ to your test target:
 
 ```swift
 .testTarget(
