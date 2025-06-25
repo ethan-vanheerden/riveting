@@ -1,4 +1,4 @@
-# Riveting: RIV Architecture for iOS
+# Riveting: RIV Architecture for iOS + macOS
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%2017%20%7C%20macOS%2014-blue.svg)](https://developer.apple.com)
@@ -8,9 +8,7 @@ Riveting is a Swift implementation of the RIV (Reducer, Interactor, View) archit
 
 ## Overview
 
-RIV is a unidirectional data flow architecture that separates concerns into three main components:
-
-![RIV Architecture Diagram](https://via.placeholder.com/800x400?text=RIV+Architecture+Diagram)
+RIV is a unidirectional data flow architecture that separates concerns into three main components.
 
 ### Core Components
 
